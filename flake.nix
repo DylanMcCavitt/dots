@@ -45,7 +45,7 @@
     ...
   } @ inputs: {
     nixosConfigurations = let
-      myHosts = ["darrow" "sevro"];
+      myHosts = ["darrow" "cassius"];
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
