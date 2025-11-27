@@ -7,6 +7,9 @@
     ../modules/home/niri.nix
     ../modules/home/nvf.nix
     ../modules/home/dms.nix
+    ../modules/home/foot.nix
+    ../modules/home/yazi.nix
+    ../modules/home/spicetify.nix
   ];
 
   home.username = "dylan";
@@ -26,6 +29,8 @@
     btop
     swaybg
     xwayland-satellite
+    yazi
+    wev
   ];
 
   programs.bash = {
