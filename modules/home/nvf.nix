@@ -15,6 +15,11 @@
       viAlias = true;
       vimAlias = true;
 
+      theme = {
+        enable = true;
+        name = "nord";
+      };
+
       git = {
         enable = true;
         gitsigns = {
@@ -30,6 +35,7 @@
       };
 
       statusline.lualine = {
+        theme = "nord";
         enable = true;
       };
 

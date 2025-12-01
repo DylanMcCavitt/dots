@@ -10,6 +10,8 @@
     ../modules/home/foot.nix
     ../modules/home/yazi.nix
     ../modules/home/spicetify.nix
+    ../modules/home/gtk.nix
+    ../modules/home/kitty.nix
   ];
 
   home.username = "dylan";
@@ -31,11 +33,17 @@
     xwayland-satellite
     yazi
     wev
+    kitty
   ];
 
   programs.bash = {
     enable = true;
+    shellAliases = {
+      nrs = "sudo nixos-rebuild switch --flake ~/dots#cassius";
+    };
   };
+
+  programs.direnv.enable = true;
 
   programs.chromium = {
     enable = true;

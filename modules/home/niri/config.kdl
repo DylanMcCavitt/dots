@@ -6,7 +6,9 @@ include "monitors.kdl"
 include "windows.kdl"
 include "wpblur.kdl"
 
-
+environment {
+  XDG_CURRENT_DESKTOP "niri"
+}
 
 
 
