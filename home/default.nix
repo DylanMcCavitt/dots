@@ -12,6 +12,7 @@
     ../modules/home/spicetify.nix
     ../modules/home/gtk.nix
     ../modules/home/kitty.nix
+    ../modules/home/zed.nix
   ];
 
   home.username = "dylan";
@@ -34,6 +35,7 @@
     yazi
     wev
     kitty
+    zed-editor
   ];
 
   programs.bash = {
