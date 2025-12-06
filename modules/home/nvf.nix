@@ -125,6 +125,26 @@
           format.enable = true;
         };
 
+        css = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+        };
+
+        astro = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+          format.type = "prettier";
+        };
+
+        ts = {
+          enable = true;
+          lsp.enable = true;
+          format.enable = true;
+          format.type = "prettier";
+        };
+
         go = {
           enable = true;
           lsp.enable = true;
