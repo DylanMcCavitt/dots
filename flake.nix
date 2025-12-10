@@ -34,6 +34,13 @@
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
     };
+
+    opencode-flake.url = "github:aodhanhayter/opencode-flake";
+    opencode-flake.inputs.nixpkgs.follows = "nixpkgs";
+  };
+  sops-nix = {
+    url = "github:Mic92/sops-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
@@ -42,6 +49,7 @@
     home-manager,
     niri,
     nvf,
+    opencode-flake,
     ...
   } @ inputs: {
     nixosConfigurations = let

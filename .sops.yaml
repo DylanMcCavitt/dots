@@ -1,0 +1,9 @@
+keys:
+  - age1p9sq4pw607cmx3uj3zq7dgk3sjg24t94t08twyhf070ye3w2kc8q42u63h
+  - age1x2rqjy80lhzg6fama2hjz5cyw73pvu8svvf7h42de8257rlxzc2q42mq3k
+creation_rules:
+  - path_regex: secrets\.yaml
+    key_groups:
+      - age:
+          - age1p9sq4pw607cmx3uj3zq7dgk3sjg24t94t08twyhf070ye3w2kc8q42u63h
+          - age1x2rqjy80lhzg6fama2hjz5cyw73pvu8svvf7h42de8257rlxzc2q42mq3k

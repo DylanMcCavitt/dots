@@ -1,4 +1,11 @@
 {
+  "agent_servers": {
+    "OpenCode": {
+      "type": "custom",
+      "command": "opencode",
+      "args": ["acp"]
+    }
+  },
   "vim_mode": true,
   "icon_theme": "JetBrains New UI Icons (Dark)",
   "ui_font_size": 16,
@@ -7,5 +14,16 @@
     "mode": "dark",
     "light": "Nord Light",
     "dark": "Nord Dark"
+  },
+  "lsp": {
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "lint": {
+            "unknownAtRules": "ignore"
+          }
+        }
+      }
+    }
   }
 }

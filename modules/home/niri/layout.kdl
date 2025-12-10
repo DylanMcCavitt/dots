@@ -37,6 +37,7 @@ layout {
         active-color   "#55dbc7"
         inactive-color "#8093a0"
         urgent-color   "#ffb4ab"
+        width 1
     }
 
     shadow {

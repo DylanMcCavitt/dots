@@ -13,6 +13,7 @@
     ../modules/home/gtk.nix
     ../modules/home/kitty.nix
     ../modules/home/zed.nix
+    ../modules/home/opencode.nix
   ];
 
   home.username = "dylan";
@@ -58,12 +59,20 @@
 
   programs.git = {
     enable = true;
-    settings.user.name = "Dylan McCavitt";
+    settings = {
+      user.name = "Dylan McCavitt";
+      core.excludesfile = "~/.config/git/ignore";
+    };
 
     includes = [
       {path = "~/.gitconfig.local";}
     ];
   };
+
+  home.file.".config/git/ignore".text = ''
+    .envrc
+    .direnv
+  '';
 
   programs.dankMaterialShell = {
     systemd = {
