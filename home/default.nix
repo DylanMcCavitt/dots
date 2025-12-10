@@ -14,6 +14,7 @@
     ../modules/home/kitty.nix
     ../modules/home/zed.nix
     ../modules/home/opencode.nix
+    ../modules/home/secrets.nix
   ];
 
   home.username = "dylan";
