@@ -35,12 +35,15 @@
       url = "github:Gerg-L/spicetify-nix";
     };
 
-    opencode-flake.url = "github:aodhanhayter/opencode-flake";
-    opencode-flake.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    opencode-flake = {
+      url = "github:aodhanhayter/opencode-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   sops-nix = {
     url = "github:Mic92/sops-nix";
     inputs.nixpkgs.follows = "nixpkgs";
+  };
   };
 
   outputs = {
@@ -50,6 +53,7 @@
     niri,
     nvf,
     opencode-flake,
+    sops-nix,
     ...
   } @ inputs: {
     nixosConfigurations = let
