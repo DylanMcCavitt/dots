@@ -1,0 +1,150 @@
+config-version = 2
+
+after-startup-command = ['exec-and-forget sketchybar']
+
+start-at-login = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+
+default-root-container-layout = 'tiles'
+
+default-root-container-orientation = 'horizontal'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+exec-on-workspace-change = ['/bin/bash', '-c',
+  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+automatically-unhide-macos-hidden-apps = false
+
+# Auto-balance when focus changes (prevents janky resizing)
+# Also: hide borders when only 1 window, show when multiple
+on-focus-changed = [
+  'balance-sizes',
+  'exec-and-forget /bin/bash -c "[ $(aerospace list-windows --workspace focused | wc -l) -eq 1 ] && borders width=0 || borders width=5.0"'
+]
+
+[key-mapping]
+preset = 'qwerty'
+
+[gaps]
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 25 # space for sketchybar
+outer.right = 8
+
+[mode.main.binding]
+
+# Layout toggles
+alt-slash = 'layout tiles horizontal vertical'
+alt-comma = 'layout accordion horizontal vertical'
+
+# Focus windows (Mod+hjkl in niri)
+alt-h = 'focus left'
+alt-j = 'focus down'
+alt-k = 'focus up'
+alt-l = 'focus right'
+
+# Move windows (Mod+Ctrl+hjkl in niri)
+alt-ctrl-h = 'move left'
+alt-ctrl-j = 'move down'
+alt-ctrl-k = 'move up'
+alt-ctrl-l = 'move right'
+
+# Focus monitor (Mod+Shift+hjkl in niri)
+alt-shift-h = 'focus-monitor left'
+alt-shift-j = 'focus-monitor down'
+alt-shift-k = 'focus-monitor up'
+alt-shift-l = 'focus-monitor right'
+
+# Move window to monitor (Mod+Shift+Ctrl+hjkl in niri)
+alt-shift-ctrl-h = 'move-node-to-monitor left'
+alt-shift-ctrl-j = 'move-node-to-monitor down'
+alt-shift-ctrl-k = 'move-node-to-monitor up'
+alt-shift-ctrl-l = 'move-node-to-monitor right'
+
+# Resize (Mod+Minus/Equal in niri)
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
+
+# Window actions
+alt-q = 'close'
+alt-f = 'fullscreen'
+alt-shift-f = 'layout floating tiling'
+
+# Center (Mod+C in niri)
+alt-c = 'balance-sizes'
+
+# Workspaces (Mod+1-9 in niri)
+alt-1 = 'workspace 1'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
+
+# Move to workspace (Mod+Ctrl+1-9 in niri)
+alt-ctrl-1 = 'move-node-to-workspace 1'
+alt-ctrl-2 = 'move-node-to-workspace 2'
+alt-ctrl-3 = 'move-node-to-workspace 3'
+alt-ctrl-4 = 'move-node-to-workspace 4'
+alt-ctrl-5 = 'move-node-to-workspace 5'
+alt-ctrl-6 = 'move-node-to-workspace 6'
+alt-ctrl-7 = 'move-node-to-workspace 7'
+alt-ctrl-8 = 'move-node-to-workspace 8'
+alt-ctrl-9 = 'move-node-to-workspace 9'
+
+# Workspace navigation
+alt-tab = 'workspace-back-and-forth'
+alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+alt-u = 'workspace prev'
+alt-i = 'workspace next'
+alt-ctrl-u = 'move-node-to-workspace prev'
+alt-ctrl-i = 'move-node-to-workspace next'
+
+# Spawn apps (Mod+T, Mod+B, Mod+D in niri)
+alt-t = 'exec-and-forget open -a Ghostty'
+alt-b = 'exec-and-forget open -a "Google Chrome"'
+alt-d = 'exec-and-forget open -a Raycast'
+alt-z = 'exec-and-forget open -a Zed'
+alt-shift-e = 'exec-and-forget open -a Finder'
+
+# Service mode
+alt-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+esc = ['reload-config', 'mode main']
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
+backspace = ['close-all-windows-but-current', 'mode main']
+
+alt-shift-h = ['join-with left', 'mode main']
+alt-shift-j = ['join-with down', 'mode main']
+alt-shift-k = ['join-with up', 'mode main']
+alt-shift-l = ['join-with right', 'mode main']
+
+# Window Rules - auto-assign apps to workspaces
+[[on-window-detected]]
+if.app-name-regex-substring = 'Ghostty'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Zed'
+run = 'move-node-to-workspace 2'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Chrome'
+run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Spotify'
+run = 'move-node-to-workspace 4'

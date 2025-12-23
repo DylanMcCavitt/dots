@@ -1,5 +1,5 @@
 {
-  description = "nixos system";
+  description = "nixos + darwin system";
 
   inputs = {
     nixpkgs = {
@@ -8,6 +8,11 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    darwin = {
+      url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -50,30 +55,61 @@
     self,
     nixpkgs,
     home-manager,
-    niri,
-    nvf,
-    opencode-flake,
-    sops-nix,
+    darwin,
     ...
-  } @ inputs: {
+  } @ inputs: let
+
+    nixosInputs = {
+      inherit(inputs) nvf niri dgop dankMaterialShell spicetify-nix opencode-flake sops-nix;
+      inherit inputs;
+    };
+
+    #darwin safe
+    darwinInputs = {
+      inherit inputs;
+    };
+    in
+    #nixos configs
+
+      {
     nixosConfigurations = let
       myHosts = ["darrow" "cassius"];
       mkSystem = host:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {inherit inputs;};
+          specialArgs = {
+            inherit inputs;
+          };
           modules = [
             ./hosts/${host}/default.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {inherit inputs;};
+              home-manager.extraSpecialArgs = nixosInputs;
               home-manager.users.dylan = import ./home/default.nix;
             }
           ];
         };
     in
       nixpkgs.lib.genAttrs myHosts mkSystem;
+
+      #darwin congigs
+      darwinConfigurations= {
+        "dylan-macos" = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+
+            modules = [
+              ./hosts/darwin/macos/default.nix
+              home-manager.darwinModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.backupFileExtension = "backup";
+                home-manager.users.dylanmccavitt = import ./home/darwin/default.nix;
+              }
+            ];
+        };
+      };
   };
 }
