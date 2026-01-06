@@ -5,7 +5,6 @@
 }: {
   imports = [
     ../modules/home/niri.nix
-    ../modules/home/nvf.nix
     ../modules/home/dms.nix
     ../modules/home/foot.nix
     ../modules/home/yazi.nix
@@ -24,12 +23,10 @@
 
   home.packages = with pkgs; [
     foot
-    #firefox
     fastfetch
     lazygit
     fuzzel
     ripgrep
-    neovim
     bat
     btop
     swaybg
@@ -38,6 +35,9 @@
     wev
     kitty
     zed-editor
+    obsidian
+    freecad-wayland
+    nodejs_22
   ];
 
   programs.bash = {

@@ -3,7 +3,7 @@
 {
   imports = [
     ../../modules/darwin/aerospace.nix
-    ../../modules/darwin/sketchybar-config.nix
+    ../../modules/darwin/ghostty.nix
   ];
 
   home.username = "dylanmccavitt";
@@ -17,14 +17,17 @@
     bat
     eza
     yazi
-    sketchybar
     jankyborders
-  ];
+    nodejs_22
+    nodePackages.pnpm
+    opencode
+    d2
+      ];
 
   programs.zsh = {
     enable = true;
     shellAliases = {
-      drs = "darwin-rebuild switch --flake ~/projects/dots#dylan-macos";
+      drs = "sudo darwin-rebuild switch --flake ~/projects/dots#dylan-macos";
       ls = "eza --icons";
       ll = "eza -la --icons";
       lg = "lazygit";

@@ -1,8 +1,7 @@
 {pkgs,...}: {
   imports = [
     ../../../modules/darwin/jankyborders.nix
-    ../../../modules/darwin/sketchybar.nix
-      ];
+          ];
   nix.enable = false;
 
   # Define the user so home-manager can find the home directory
@@ -43,7 +42,10 @@
       "font-sf-mono"
       "flutter"
       "aerospace"
-    ];
+      "obsidian"
+      "arduino-ide"
+      "freecad"
+          ];
 
 };
 

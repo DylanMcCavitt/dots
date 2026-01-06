@@ -1,0 +1,6 @@
+theme = Nord
+keybind = shift+enter=text:\x1b\r
+
+# Use new window instead of tabs to fix AeroSpace tiling issue
+# macOS native tabs appear as separate windows to tiling WMs
+keybind = cmd+t=new_window

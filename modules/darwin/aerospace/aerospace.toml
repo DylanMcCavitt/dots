@@ -23,9 +23,11 @@ automatically-unhide-macos-hidden-apps = false
 
 # Auto-balance when focus changes (prevents janky resizing)
 # Also: hide borders when only 1 window, show when multiple
+# Trigger sketchybar update on focus change (app open/close/switch)
 on-focus-changed = [
   'balance-sizes',
-  'exec-and-forget /bin/bash -c "[ $(aerospace list-windows --workspace focused | wc -l) -eq 1 ] && borders width=0 || borders width=5.0"'
+  'exec-and-forget /bin/bash -c "[ $(aerospace list-windows --workspace focused | wc -l) -eq 1 ] && borders width=0 || borders width=5.0"',
+  'exec-and-forget sketchybar --trigger aerospace_workspace_change'
 ]
 
 [key-mapping]
@@ -36,7 +38,7 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 8
 outer.bottom = 8
-outer.top = 25 # space for sketchybar
+outer.top = 20 # space for sketchybar
 outer.right = 8
 
 [mode.main.binding]
@@ -112,11 +114,12 @@ alt-ctrl-u = 'move-node-to-workspace prev'
 alt-ctrl-i = 'move-node-to-workspace next'
 
 # Spawn apps (Mod+T, Mod+B, Mod+D in niri)
-alt-t = 'exec-and-forget open -a Ghostty'
-alt-b = 'exec-and-forget open -a "Google Chrome"'
+alt-t = 'exec-and-forget open -na Ghostty'
+alt-b = 'exec-and-forget open -na "Google Chrome" --args --new-window'
 alt-d = 'exec-and-forget open -a Raycast'
-alt-z = 'exec-and-forget open -a Zed'
+alt-z = 'exec-and-forget open -na Zed'
 alt-shift-e = 'exec-and-forget open -a Finder'
+alt-shift-s = 'exec-and-forget open -na Spotify'
 
 # Service mode
 alt-shift-semicolon = 'mode service'
@@ -131,20 +134,3 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
-
-# Window Rules - auto-assign apps to workspaces
-[[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Zed'
-run = 'move-node-to-workspace 2'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Chrome'
-run = 'move-node-to-workspace 3'
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Spotify'
-run = 'move-node-to-workspace 4'

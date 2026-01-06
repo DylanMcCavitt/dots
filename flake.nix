@@ -16,8 +16,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvf = {
-      url = "github:notashelf/nvf";
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,7 +60,7 @@
   } @ inputs: let
 
     nixosInputs = {
-      inherit(inputs) nvf niri dgop dankMaterialShell spicetify-nix opencode-flake sops-nix;
+      inherit(inputs) niri dgop dankMaterialShell spicetify-nix opencode-flake sops-nix;
       inherit inputs;
     };
 
@@ -106,6 +106,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "backup";
+                home-manager.extraSpecialArgs = darwinInputs;
                 home-manager.users.dylanmccavitt = import ./home/darwin/default.nix;
               }
             ];
