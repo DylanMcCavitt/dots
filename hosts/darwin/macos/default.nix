@@ -26,10 +26,6 @@
       upgrade = true;
     };
 
-    taps = [
-         "nikitabobko/tap"
-       ];
-
     casks = [
       "raycast"
       "ghostty"
@@ -41,7 +37,7 @@
       "font-sf-pro"
       "font-sf-mono"
       "flutter"
-      "aerospace"
+      "amethyst"
       "obsidian"
       "arduino-ide"
       "freecad"

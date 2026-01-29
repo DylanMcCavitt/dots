@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../../modules/darwin/aerospace.nix
     ../../modules/darwin/ghostty.nix
   ];
 
