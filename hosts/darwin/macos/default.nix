@@ -1,6 +1,7 @@
 {pkgs,...}: {
   imports = [
     ../../../modules/darwin/jankyborders.nix
+    ../../../modules/darwin/aerospace.nix
           ];
   nix.enable = false;
 
@@ -37,10 +38,10 @@
       "font-sf-pro"
       "font-sf-mono"
       "flutter"
-      "amethyst"
       "obsidian"
       "arduino-ide"
       "freecad"
+      "openscad"
           ];
 
 };
